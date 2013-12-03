@@ -1,0 +1,27 @@
+CROSS_HOST="x86_64-w64-mingw32"
+ORIG_PN="GConf"
+inherit cross gnome2
+
+NAME="mingw64-x86_64-gconf2"
+VERSION=3.2.6
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="GNOME2 configuration database system for Win64 toolchain"
+DESCRIPTION="GConf is a configuration database system, functionally similar to
+the Windows registry but lots better. It's being written for the GNOME desktop
+but does not require GNOME."
+
+DEPEND="gnome-common gtk-doc
+	pkgconfig(dbus-1)
+	pkgconfig(dbus-glib-1)
+	pkgconfig(glib-2.0)
+	pkgconfig(libxml-2.0)"
+
+KEEPDIRS="${CROSS_PREFIX}/etc/gconf/gconf.xml.defaults ${CROSS_PREFIX}/etc/gconf/gconf.xml.mandatory"
+
+CYGCONF_ARGS="
+	--disable-defaults-service
+	--enable-gsettings-backend
+	--disable-orbit
+	--without-openldap
+"
